@@ -1,0 +1,21 @@
+if (a < 0)										// факториала отрицательного числа не существует
+        	{
+        		printf("Error \n");
+        	}
+        	else if (a == 0)								// на случай если нам интересен факториал нуля
+        	{
+        		printf("0 \n");								// вообще факториал нуля это равен 1, но будем считать, что он равено 0
+        	}
+        	else if (a - (int)a != 0)
+        	{
+        		printf("You can't use factorial numbers \n");
+        	}
+        	else if (a != 0)
+        	{
+        		res = 1;
+        				for (int d=1;d<=c;d++)
+        				{
+        					res *= d;
+        				}
+        				printf("Result: %f", res);
+        	}
