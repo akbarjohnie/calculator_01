@@ -1,9 +1,5 @@
 //Created by Akbarjon Rashidov, first year student of VSU
 //physical faculty, Informatics and computer engineering (ICE)
-//now (10.04.2021 14:11) there are some problems in code
-//now (11.04.2021 20^09) there are less problems in code
-//now (13.04.2021 13:37) I realized that I've read task text wrong
-//now (13.04.2021 16:35) code works correctly
 #include <stdio.h>  //
 #include <stdlib.h> //code needs this libraries to work
 
@@ -17,7 +13,7 @@ int main(int argc, char *argv[]) //
     int res1, i, j;
     do
     {
-        printf("Do you want to use classic or vector calculator? (a/v):\n "); //here we ask user "what calculator he wants to use"
+        printf("Do you want to use classic or vector calculator? (c/v):\n "); //here we ask user "what calculator he wants to use"
         scanf(" %c", &x);                                                    //answer that move user to one of two variant
         switch (x)
         {
@@ -108,17 +104,17 @@ int main(int argc, char *argv[]) //
         {
         	printf("Input size of vectors: \n");
         	scanf("%i", &i);
-        	c=malloc((i-1) * sizeof(float));	//allocating the required amount of memory for vector№1
-            d=malloc((i-1) * sizeof(float));	//allocating the required amount of memory for vector№2
+        	c=malloc(i * sizeof(float));	//allocating the required amount of memory for vector№1
+            d=malloc(i * sizeof(float));	//allocating the required amount of memory for vector№2
             printf("Input first vector: \n ");	//считывание первого вектора
-            for (j = 0; j <= (i-1); j++)
+            for (j = 0; j < i; j++)
             {
             	scanf("%f", &c[j]);
             }
             printf("Input operation (-+*): \n");
             scanf(" %c", &t);
             printf("Input second vector: \n ");
-            for (j = 0; j <= (i-1); j++)		//считывание второго вектора
+            for (j = 0; j < i; j++)		//считывание второго вектора
             {
             	scanf("%f", &d[j]);
             }
@@ -148,12 +144,12 @@ int main(int argc, char *argv[]) //
            	default:
             	printf("WRONG OPERATION");		//стоило бы сделать так, чтобы это выводилось сразу после вывода операции, которой нет в перечисленном списке
             }
+        free(c);
+        free(d);
         }
         }
         printf("Do you want to continue? (y/n) \n");
         scanf(" %c", &y);
     } while (y == 'y');
-    free(c);
-    free(d);
     return 0;
 }
