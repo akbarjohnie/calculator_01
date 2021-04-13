@@ -1,92 +1,92 @@
-// Created by Akbarjohn Rashidov, first year student of VSU
-// physical faculty, ICE
-// гугл сказал, что ИВТ это Informatics and computer engineering
-// Проверил все операции, ошибок в вычислениях не должно быть
+//Created by Akbarjon Rashidov, first year student of VSU
+//physical faculty, Informatics and computer engineering (ICE)
+//now (10.04.2021 14:11) there are some problems in code
+//now (11.04.2021 20^09) there are less problems in code
+//now (13.04.2021 13:37) I realized that I've read task text wrong
+//now (13.04.2021 16:35) code works correctly
+#include <stdio.h>  //
+#include <stdlib.h> //code needs this libraries to work
 
-#include <stdio.h>
-
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) //
 {
-	setvbuf(stdout, NULL, _IONBF, 0);
-	setvbuf(stderr, NULL, _IONBF, 0);
+    setvbuf(stdout, NULL, _IONBF, 0); //
+    setvbuf(stderr, NULL, _IONBF, 0); //this lines are necessary for correct work of program
 
-    float a,b;													// Обозначаем 2 переменные, отвечающие за числа
-    char c,v;													// Обозначаем 2 переменные, отвечающие за символы ('c' это символ операции, 'v' символ-ответ на вопрос о продолжении работы программы)
-    float res,g;												// переменная 'res' отвечает за получение результата в некоторых операциях, 'g' используется в опции возведения в степень
-    															// P.S. я знаю что переменные с типом флот можно одной строкой записать, но пускай будет так
-
-    int res1;
-
+    float a, b, *c, *d, res, g;
+    char y, x, z, t;
+    int res1, i, j;
     do
     {
-        printf("Input first number: \n");					// У нас спрашивают первое число
-        scanf("%f", &a);									// Вводим первое число
-
-        printf("Input operation (-+/*^!): \n");				// У нас спрашивают операцию
-        scanf("%s", &c);									// Вводим символ, означающий определённую операцию
-
-        if (c == '!')										// чтобы было проще жить, действия с факториалами я вынес до свитч-кейсов, но пока что у меня где-то ошибка и факториал работает не корректно, хотя задание с факториалом я успешно выполнил
+        printf("Do you want to use classic or vector calculator? (a/v):\n "); //here we ask user "what calculator he wants to use"
+        scanf(" %c", &x);                                                    //answer that move user to one of two variant
+        switch (x)
         {
-        	if (a < 0)										// факториала отрицательного числа не существует
-        	{
-        		printf("Error \n");
-        	}
-        	else if (a == 0)								// на случай если нам интересен факториал нуля
-        	{
-        		printf("0 \n");								// вообще факториал нуля это равен 1, но будем считать, что он равено 0
-        	}
-        	else if (a - (int)a != 0)
-        	{
-        		printf("You can't use factorial numbers \n");		// чтобы получить ответ на факториал вещественного числа
-        	}
-        	else if (a != 0)
-        	{
-        		res1 = 1;
-        				for (int d=1;d<=a;d++)
-        				{
-        					res1 *= d;
-        				}
-        				printf("Result: %i \n", res1);				// факториал считает всё хорошо по 12!, чтобы он хорошо считал и дальше нужно использовать long int или что-либо подобное
-        	}
+        case 'a': //algebra calculator
 
-        }
+            printf("Input first number:\n"); //user inputs first number
+            scanf("%f", &a);
+            printf("Input operation (-+/*^!):\n"); //user is making his choice
+            scanf(" %c", &z);
 
-        else
-        {
-        printf("Input second number: \n");					// У нас спрашивают второе число
-        scanf("%f", &b);									// Вводим второе число, если с != '!'
-
-        switch (c)											// переходим к части с действиями с разными функциями
+            if (z == '!') //operation "!" (factorial) needs only one number, so I moved this operation to the top
+            {
+                if (a < 0) //factorial of a negative number doesn't exist
                 {
-                case '+':											// ну тут сложение
-                    printf("Result %f: \n", a+b);
+                    printf("Error \n");
+                }
+                else if (a == 0)
+                {
+                    printf("Result: 1 \n"); //factorial of 0 is 1 (0! = 1)
+                }
+                else if (a - (int)a != 0) //we cannot find the factorial of a real number (переводчик выдал: вещественное число --> real number)
+                {
+                    printf("You can't use factorial of this number \n");
+                }
+                else if (a != 0) //
+                {
+                    res1 = 1;
+                    for (int r = 1; r <= a; r++)
+                    {
+                        res1 *= r;
+                    }
+                    printf("Result: %i \n", res1);
+                }
+            }
+            else
+            {
+                printf("Input second number: \n"); 	//if operation was not a factorial, user input second number
+                scanf("%f", &b);
+                switch (z) 							//there goes usual operations
+                {
+                case '+':
+                    printf("Result %f: \n", a + b);
                     break;
-
-                case '-':											// а тут разность
-                    printf("Result %f \n", a-b);
+                case '-':
+                    printf("Result %f: \n", a - b);
                     break;
-
-                case '/':											// деление
-                    printf("Result %f: \n", a/b);
+                case '/':
+                    printf("Result %f: \n", a / b);
                     break;
-
-                case '*':											// умножение
-                    printf("Result %f: \n", a*b);
+                case '*':
+                    printf("Result %f: \n", a * b);
                     break;
-
                 case '^':
-                    g = 1;                          		//с возведением в степень была некая проблема
-                    if (b < 0)                      		//когда ты делишь 1 число кучу раз в цикле
-                    {                               		//оно становится равным нулю.
-                        for (int i = 0; i > b; i--) 		//ну я как CoolHackerMan нашаманил в коде и
-                        {                           		//исправил ошибку: теперь у меня умножается в
-                            g = g * a;            			//цикле кучу раз знаменатель, а потом 1 число
-                        }                           		//делится на этот знаменатель
+                    g = 1;
+                    if (b < 0)
+                    {
+                        for (int i = 0; i > b; i--)
+                        {
+                            g = g * a;
+                        }
                         res = 1 / g;
-                    } 										//Импровизируй, Адаптируйся, Преодолевай
-                    else if (b == 0)						// @Дмитрий Каспер
-                    {										// данная часть кода (именно возведение в степень) была позаимствованна у Дмитрия
+                    }
+                    else if (b == 0)
+                    {
                         res = 1;
+                    }
+                    else if (b - (int)b != 0)
+                    {
+                        printf("Error \n");
                     }
                     else
                     {
@@ -96,21 +96,64 @@ int main(int argc, char *argv[])
                         }
                         res = g;
                     }
-                    printf("Result: %f \n", res);				// получение результата на функцию возведения в степень
+                    printf("Result: %f \n", res);
                     break;
-
-                default:										// это на случай, если будет введён какой-то символ не из списка перечисленных
-                    printf("Error \n");							// ответ на непонятный символ
+                default:
+                    printf("Error \n");
                 }
+            }
+            break;
+
+        case 'v': //vector calculator
+        {
+        	printf("Input size of vectors: \n");
+        	scanf("%i", &i);
+        	c=malloc((i-1) * sizeof(float));	//allocating the required amount of memory for vector№1
+            d=malloc((i-1) * sizeof(float));	//allocating the required amount of memory for vector№2
+            printf("Input first vector: \n ");	//считывание первого вектора
+            for (j = 0; j <= (i-1); j++)
+            {
+            	scanf("%f", &c[j]);
+            }
+            printf("Input operation (-+*): \n");
+            scanf(" %c", &t);
+            printf("Input second vector: \n ");
+            for (j = 0; j <= (i-1); j++)		//считывание второго вектора
+            {
+            	scanf("%f", &d[j]);
+            }
+            switch (t)
+            {
+            case '-':
+            	printf("Result: \n");
+            	for (j = 0; j < i; j++)			//цикл вывода разности соответствующих координат вектора
+            	{
+            		printf("%f ", c[j]-d[j]);
+            	}
+            	break;
+            case '+':
+            	printf("Result: \n");			//цикл вывода разности соответствующих координат вектора
+            	for (j = 0; j < i; j++)
+            	{
+            		printf("%f ", c[j]+d[j]);
+            	}
+            	break;
+            case '*':							//цикл вывода скалярного произведения
+            	printf("Result: \n");
+            	for (j = 0; j < i; j++)
+            	{
+            		printf("%f ", c[j]*d[j]);
+            	}
+           		break;
+           	default:
+            	printf("WRONG OPERATION");		//стоило бы сделать так, чтобы это выводилось сразу после вывода операции, которой нет в перечисленном списке
+            }
         }
-
-
-
-        printf("Do you want to continue?(y.n) \n"); 	// писать код для ответа на другие значения 'v' мне лень
-        scanf("%s", &v);								// вводим y/n в зависимости от желания продолжать работу программы или нет
-
-
-    }
-    while (v == 'y');									// ну получается пока переменная 'v' равняется 'y' мы продолжаем работу программы, в остальных случаях программа офается
-    return 0;											// то что всегда нужно в программах на языке 'C'
+        }
+        printf("Do you want to continue? (y/n) \n");
+        scanf(" %c", &y);
+    } while (y == 'y');
+    free(c);
+    free(d);
+    return 0;
 }
