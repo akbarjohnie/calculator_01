@@ -1,8 +1,10 @@
-//Created by Akbarjon Rashidov, first year student of VSU
-//physical faculty, Informatics and computer engineering (ICE)
-//так нам нужен файл из которого берём значения и файл в который мы записываем результаты
+/*
+Created by Akbarjon Rashidov, first year student of VSU
+physical faculty, Informatics and computer engineering (ICE)
+так нам нужен файл из которого берём значения и файл в который мы записываем результаты
 
-//прежде чем начать работу с кодом прочтите файл readme.txt
+прежде чем начать работу с кодом прочтите файл "readme.txt"
+*/
 
 #include <stdio.h>  //
 #include <stdlib.h> //code needs this libraries to work
@@ -16,14 +18,15 @@ int main(int argc, char *argv[]) //
 	setvbuf(stderr, NULL, _IONBF, 0); //this lines are necessary for correct work of program
 
 	do {
-		FILE *in, *out; //указываем на то, что у нас будут использоваться файлы
-		in = fopen(input, "r"); //открываем файл 'input', из которого будем читать входные данные
-		out = fopen(output, "w"); //открываем файл 'output', в который будем в дальнейшем записывать данные
 
 		printf("Input input file name: \n");
 		scanf(" %s", &input);
 		printf("Input output file name: \n");
 		scanf(" %s", &output);
+
+		FILE *in, *out; //указываем на то, что у нас будут использоваться файлы
+		in = fopen(input, "r"); //открываем файл 'input', из которого будем читать входные данные
+		out = fopen(output, "w"); //открываем файл 'output', в который будем в дальнейшем записывать данные
 		do {
 			printf(
 					"Do you want to use classic or vector calculator? (c/v):\n "); //here we ask user "what calculator he wants to use"
@@ -198,7 +201,6 @@ int main(int argc, char *argv[]) //
 
 			}
 			}
-			printf("Do you want to continue? (y/n) \n");
 			fscanf(in, " %c", &y);
 		} while (y == 'y');
 		fclose(in);
