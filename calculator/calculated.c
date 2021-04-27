@@ -15,7 +15,7 @@ int res1, i, j;
 int main(int argc, char *argv[]) //
 {
 	setvbuf(stdout, NULL, _IONBF, 0); //
-	setvbuf(stderr, NULL, _IONBF, 0); //this lines are necessary for correct work of program
+	setvbuf(stderr, NULL, _IONBF, 0); //this lines are necessary for correct work of program..
 
 	do {
 
