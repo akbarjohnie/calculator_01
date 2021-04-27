@@ -6,21 +6,20 @@
 
 #include <stdio.h>  //
 #include <stdlib.h> //code needs this libraries to work
+float a, b, *c, *d, res, g;
+char y, x, z, t, input[50], output[50], yy;
+int res1, i, j;
 
 int main(int argc, char *argv[]) //
 {
 	setvbuf(stdout, NULL, _IONBF, 0); //
 	setvbuf(stderr, NULL, _IONBF, 0); //this lines are necessary for correct work of program
 
-	float a, b, *c, *d, res, g;
-	char y, x, z, t, input[50], output[50], yy;
-	int res1, i, j;
-
-	FILE *in, *out; //указываем на то, что у нас будут использоваться файлы
-	in = fopen("input.txt", "r"); //открываем файл 'input', из которого будем читать входные данные
-	out = fopen("output.txt", "w"); //открываем файл 'output', в который будем в дальнейшем записывать данные
-
 	do {
+		FILE *in, *out; //указываем на то, что у нас будут использоваться файлы
+		in = fopen(input, "r"); //открываем файл 'input', из которого будем читать входные данные
+		out = fopen(output, "w"); //открываем файл 'output', в который будем в дальнейшем записывать данные
+
 		printf("Input input file name: \n");
 		scanf(" %s", &input);
 		printf("Input output file name: \n");
@@ -196,13 +195,14 @@ int main(int argc, char *argv[]) //
 				}
 				free(c);
 				free(d);
-				fclose(in);
-				fclose(out);
+
 			}
 			}
 			printf("Do you want to continue? (y/n) \n");
 			fscanf(in, " %c", &y);
 		} while (y == 'y');
+		fclose(in);
+		fclose(out);
 		printf("Do you want to continue? (y/n) \n");
 		scanf(" %c", &yy);
 	} while (yy == 'y');
